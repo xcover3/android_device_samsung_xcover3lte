@@ -1,0 +1,582 @@
+import init.pxa1908.usb.rc
+import init.pxa1908.tel.rc
+import init.pxa1908.sensor.rc
+import init.pxa1908.security.rc
+import init.wifi.rc
+import init.fac.rc
+
+on init
+    mkdir /preload 0771 system system
+
+    # See storage config details at http://source.android.com/tech/storage/
+    mkdir /mnt/media_rw/extSdCard 0700 media_rw media_rw
+    mkdir /mnt/media_rw/UsbDriveA 0700 media_rw media_rw
+    mkdir /mnt/media_rw/UsbDriveB 0700 media_rw media_rw
+    mkdir /mnt/media_rw/UsbDriveC 0700 media_rw media_rw
+    mkdir /mnt/media_rw/UsbDriveD 0700 media_rw media_rw
+    mkdir /mnt/media_rw/UsbDriveE 0700 media_rw media_rw
+    mkdir /mnt/media_rw/UsbDriveF 0700 media_rw media_rw
+
+    # See storage config details at http://source.android.com/tech/storage/
+    mkdir /mnt/shell/emulated 0700 shell shell
+    mkdir /storage/emulated 0555 root root
+
+    export EXTERNAL_STORAGE /storage/emulated/legacy
+    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
+    export EMULATED_STORAGE_TARGET /storage/emulated
+
+    export SECONDARY_STORAGE /storage/extSdCard
+
+    # Support legacy paths
+    symlink /storage/emulated/legacy /sdcard
+    symlink /storage/emulated/legacy /mnt/sdcard
+    symlink /storage/emulated/legacy /storage/sdcard0
+    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
+
+    # map "real" external storages paths also in same way. backwards compatibility.
+    symlink /storage/extSdCard /mnt/extSdCard
+    symlink /storage/UsbDriveA /mnt/UsbDriveA
+    symlink /storage/UsbDriveB /mnt/UsbDriveB
+    symlink /storage/UsbDriveC /mnt/UsbDriveC
+    symlink /storage/UsbDriveD /mnt/UsbDriveD
+    symlink /storage/UsbDriveE /mnt/UsbDriveE
+    symlink /storage/UsbDriveF /mnt/UsbDriveF
+
+    mkdir /efs 0771 radio system
+
+    mkdir /storage/extSdCard 0700 root root
+    mkdir /storage/UsbDriveA 0700 root root
+    mkdir /storage/UsbDriveB 0700 root root
+    mkdir /storage/UsbDriveC 0700 root root
+    mkdir /storage/UsbDriveD 0700 root root
+    mkdir /storage/UsbDriveE 0700 root root
+    mkdir /storage/UsbDriveF 0700 root root
+
+    setprop ro.board.platform mrvl
+
+    write /proc/sys/vm/legacy_va_layout 1
+
+    # for control LCD backlight
+    chown system system /sys/class/backlight/panel/brightness
+    chmod 0664 /sys/class/backlight/panel/brightness
+    chown system system /sys/class/backlight/panel/auto_brightness
+    chmod 0664 /sys/class/backlight/panel/auto_brightness
+
+    # mdnie
+    chown system media_rw /sys/class/mdnie/mdnie/accessibility
+    chmod 0664 /sys/class/mdnie/mdnie/accessibility
+    chown system media_rw /sys/class/mdnie/mdnie/scenario
+    chmod 0664 /sys/class/mdnie/mdnie/scenario
+    chown system system /sys/class/mdnie/mdnie/negative
+    chmod 0664 /sys/class/mdnie/mdnie/negative
+    chown system system /sys/class/mdnie/mdnie/auto_brightness
+    chmod 0664 /sys/class/mdnie/mdnie/auto_brightness
+
+    #for dip channel
+    chmod 0660 /dev/simple_dip
+    chown radio system /dev/simple_dip
+    chmod 0664 /sys/devices/platform/soc.2/d4200000.axi/mmp-disp/freq
+    chown system system /sys/devices/platform/soc.2/d4200000.axi/mmp-disp/freq
+
+    setprop persist.sys.display.format 1
+
+
+    #cpu
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chmod 0444 /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq
+
+    #hotplug
+    chown system system /sys/devices/system/cpu/hotplug/bound_freq
+    chown system system /sys/devices/system/cpu/hotplug/load_h0
+    chown system system /sys/devices/system/cpu/hotplug/load_h1
+    chown system system /sys/devices/system/cpu/hotplug/load_h2
+    chown system system /sys/devices/system/cpu/hotplug/load_l1
+    chown system system /sys/devices/system/cpu/hotplug/load_l2
+    chown system system /sys/devices/system/cpu/hotplug/load_l3
+    chown system system /sys/devices/system/cpu/hotplug/lock
+    chown system system /sys/devices/system/cpu/cpu1/online
+    chown system system /sys/devices/system/cpu/cpu2/online
+    chown system system /sys/devices/system/cpu/cpu3/online
+
+    chmod 0644 /sys/devices/system/cpu/hotplug/bound_freq
+    chmod 0644 /sys/devices/system/cpu/hotplug/load_h0
+    chmod 0644 /sys/devices/system/cpu/hotplug/load_h1
+    chmod 0644 /sys/devices/system/cpu/hotplug/load_h2
+    chmod 0644 /sys/devices/system/cpu/hotplug/load_l1
+    chmod 0644 /sys/devices/system/cpu/hotplug/load_l2
+    chmod 0644 /sys/devices/system/cpu/hotplug/load_l3
+    chmod 0644 /sys/devices/system/cpu/hotplug/lock
+    chmod 0644 /sys/devices/system/cpu/cpu1/online
+    chmod 0644 /sys/devices/system/cpu/cpu2/online
+    chmod 0644 /sys/devices/system/cpu/cpu3/online
+
+    #ddr
+    chown system system /sys/class/devfreq/devfreq-ddr/polling_interval
+    chown system system /sys/class/devfreq/devfreq-ddr/min_freq
+    chown system system /sys/class/devfreq/devfreq-ddr/max_freq
+    chown system system /sys/class/devfreq/devfreq-ddr/governor
+    chown system system /sys/class/devfreq/devfreq-ddr/cur_freq
+
+    #vpu
+    chown system system /sys/class/devfreq/devfreq-vpu.0/userspace/set_freq
+    chown system system /sys/class/devfreq/devfreq-vpu.0/min_freq
+    chown system system /sys/class/devfreq/devfreq-vpu.0/max_freq
+    chown system system /sys/class/devfreq/devfreq-vpu.0/governor
+    chown system system /sys/class/devfreq/devfreq-vpu.0/cur_freq
+
+    #keypad wakeup source
+    chown system system /sys/devices/platform/soc.2/d4000000.apb/pxa27x-keypad/power/wakeup
+
+    #pm runtime
+    chown system system /sys/class/graphics/fb0/device/power/control
+    chown system system /sys/bus/platform/drivers/mmp-disp/mmp-disp/power/control
+    chown system system /sys/bus/platform/drivers/mmp-vdma/d4209000.vdma/power/control
+    chown system system /sys/devices/platform/mrvl8xxx_fm.0/power/control
+	chown system system /sys/bus/i2c/devices/3-0024/power/control
+    chown system system /sys/devices/platform/aksm/power/control
+    
+    #autosleep
+    chown system system /sys/power/autosleep
+
+    chmod 0660 /sys/power/panic
+    chown root system /sys/power/panic
+
+    chown system system /sys/class/power_supply/battery/device/calibration
+    chown system system /sys/devices/platform/mmp-gps/ctrl
+
+    chown system system /sys/class/graphics/fb0/device/vsync
+    chmod 0660 /sys/class/graphics/fb0/device/vsync
+
+    # for tsp command
+    chown system system /sys/class/sec/tsp/cmd
+
+    #GSSP device
+    chown system system /proc/driver/pcm_mfp
+    chmod 0666 /proc/driver/pcm_mfp
+
+    # master/slave
+    chown media audio /sys/devices/platform/sound/ssp_master
+    chmod 0664 /sys/devices/platform/sound/ssp_master
+
+    chown media audio /sys/devices/platform/sound/gssp_master
+    chmod 0664 /sys/devices/platform/sound/gssp_master
+
+    #set ap as master, codec/BT as slave
+    setprop persist.audio.apmaster 1
+    setprop persist.audio.gsspmaster 1
+    setprop persist.audio.codecmaster 0
+    setprop persist.bt.pcmmaster 0
+
+    # gssp record
+    chown media audio /sys/devices/platform/sound/gssp_record
+    chmod 0664 /sys/devices/platform/sound/gssp_record
+
+    #enable DRM service
+    setprop drm.service.enabled true
+
+    # Bluetooth
+    chown system system /sys/module/mbt8777/parameters/bt_mac
+    #Permissions for bluetooth
+    setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
+    chown bluetooth bluetooth ro.bt.bdaddr_path
+    mkdir /efs/bluetooth 0775 radio system
+
+    setprop battery.fake_ac 1
+
+on fs
+    # mount /data by fstab to support encryption.
+    mount_all /fstab.pxa1908
+
+    mount debugfs debugfs /sys/kernel/debug
+
+    setprop ro.crypto.fuse_sdcard true
+
+    chown radio system /efs
+    chmod 0771 /efs
+
+
+
+on post-fs
+    # insmod /lib/modules/galcore.ko registerMemBase=0xc0400000 registerMemSize=0x1000 irqLine=40 contiguousSize=0x2000000 pmemSize=0 registerMemBase2D=0xd420c000 irqLine2D=104  registerMemSize2D=0x1000
+
+    chown system system /sys/devices/platform/galcore/power/control
+    #gpu
+    chown system system /sys/devices/platform/galcore/gpu/gpu0/gpufreq/scaling_governor
+    chown system system /sys/devices/platform/galcore/gpu/gpu0/gpufreq/scaling_min_freq
+    chown system system /sys/devices/platform/galcore/gpu/gpu0/gpufreq/scaling_max_freq
+    chown system system /sys/devices/platform/galcore/gpu/gpu1/gpufreq/scaling_governor
+    chown system system /sys/devices/platform/galcore/gpu/gpu1/gpufreq/scaling_min_freq
+    chown system system /sys/devices/platform/galcore/gpu/gpu1/gpufreq/scaling_max_freq
+    chown system system /sys/devices/platform/galcore/gpu/gpu2/gpufreq/scaling_governor
+    chown system system /sys/devices/platform/galcore/gpu/gpu2/gpufreq/scaling_min_freq
+    chown system system /sys/devices/platform/galcore/gpu/gpu2/gpufreq/scaling_max_freq
+
+    # hotplug
+    chown system system /sys/devices/system/cpu/cpunum_qos/min_core_num
+    chown system system /sys/devices/system/cpu/cpunum_qos/max_core_num
+
+    # add non-cache trace node to radio group
+    chown system radio /sys/kernel/debug/tracing/trace_noncached_on
+    chmod 0664 /sys/kernel/debug/tracing/trace_noncached_on
+
+on post-fs-data
+    #Power Meter: for duty cycle profiling
+    chown system system /sys/kernel/debug/pxa/stat/cpu_dc_stat
+    chown system system /sys/kernel/debug/pxa/stat/ddr_dc_stat
+    chown system system /sys/kernel/debug/pxa/stat/gc_dc_stat
+    chown system system /sys/kernel/debug/pxa/stat/gc2d_dc_stat
+    chown system system /sys/kernel/debug/pxa/stat/vpu_dc_stat
+    chown system system /sys/class/devfreq/devfreq-ddr/device/ddr_profiling
+
+    # for log capture
+    mkdir /data/log 0775 system log
+
+    mkdir /data/log/Mlog 0775 system radio
+    chown radio shell /data/log/Mlog
+    chmod 0775 /data/log/Mlog
+
+    # copy last kernel panic log
+    copy /sys/fs/pstore/console-ramoops /data/log/console-ramoops
+
+    # for simal
+    mkdir /data/misc/simal 0777 wifi system
+    chmod 0777 /data/misc/simal
+
+    # for Phone plugin
+    mkdir /data/misc/phone 0775 media media
+    chown media media /data/misc/phone
+    chmod 0775 /data/misc/phone
+
+    #Audio Dump: for audio data dump 
+    mkdir /data/log/audio 0775 system audio
+
+    #Audio Calibration: for socket access
+    mkdir /data/misc/audio 0750 media system
+
+    # for camera dump
+    mkdir /data/log/camera 0775 media shell
+
+    # for NFC
+    setprop ro.nfc.port "I2C"
+    mkdir /data/nfc 0771 nfc system
+    # NFC : Permissions for NFC
+    chmod 0660 /dev/pn547
+    # NFC : change owner
+    chown nfc nfc /dev/pn547
+
+    #This line should be put at the end of post-fs-data action
+    setprop vold.post_fs_data_done 1
+
+on early-boot
+    # set RLIMIT_MEMLOCK to 16MB
+    setrlimit 8 16777216 16777216
+
+on boot
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor performance
+    write /sys/class/devfreq/devfreq-ddr/governor performance
+    write /sys/block/mmcblk0/queue/scheduler noop
+	
+# SSWAP
+    write /proc/sys/vm/swappiness 130
+
+    setprop ro.media.gst.enabled 1
+    setprop service.camera.af 1
+
+    #enable camera ZSL feature
+    setprop service.camera.zsl_mask 1
+
+    #enable camera MMU
+    setprop service.camera.isp.mmu 1
+
+    # for control Camera
+    chown system radio /sys/class/camera/flash/rear_flash
+    chmod 0664 /sys/class/camera/flash/rear_flash
+
+    # enable bluetooth dial-up network
+    setprop  ro.bluetooth.dun true
+
+    # set opengles version as 0x20000
+    # opengles major version = (version & 0xffff0000)>>16
+    # opengles minor version = version & 0xffff
+    setprop ro.opengles.version 131072
+
+    # Enable HW decoder for video thumbnail generation
+    setprop thumbnail.extract.hw_num 1
+
+    # usb gadget serial permission
+    chown system system /dev/ttyGS0
+    chown system system /dev/ttyGS1
+    chown system system /dev/ttyGS2
+    chown system system /dev/ttyGS3
+
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
+    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
+    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_slack
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
+    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
+    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
+    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost
+    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/boost
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/input_boost
+    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/input_boost
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration
+    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/boostpulse_duration
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
+    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
+
+    # Assume SMP uses shared cpufreq policy for all CPUs
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+
+    #OTG Test
+    chown system radio /sys/class/host_notify/usb_otg/booster
+    chmod 0664 /sys/class/host_notify/usb_otg/booster
+
+    # permission for CHARGING
+    chown system radio /sys/class/power_supply/battery/batt_reset_soc
+    chown system radio /sys/class/power_supply/battery/batt_slate_mode
+    chown system radio /sys/class/power_supply/battery/factory_mode
+    chown system radio /sys/class/power_supply/battery/siop_level
+    chown system radio /sys/class/power_supply/battery/wc_enable
+    chown system radio /sys/class/power_supply/battery/update
+    chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/store_mode
+    chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/call
+    chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/video
+    chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/music
+    chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/browser
+    chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/hotspot
+    chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/camera
+    chown system radio /sys/class/power_supply/battery/talk_wcdma
+    chown system radio /sys/class/power_supply/battery/talk_gsm
+    chown system radio /sys/class/power_supply/battery/call
+    chown system radio /sys/class/power_supply/battery/data_call
+    chown system radio /sys/class/power_supply/battery/gps
+    chown system radio /sys/class/power_supply/battery/wifi
+    chown system radio /sys/class/power_supply/battery/lte
+    chown system radio /sys/class/power_supply/battery/lcd
+    chown system radio /sys/class/power_supply/ps/status
+    chmod 0664 /sys/class/power_supply/ps/status
+
+on charger
+    class_start charger
+
+# umount service
+service umount_service /system/bin/umount /preload
+    disabled
+    oneshot
+
+on property:persist.sys.storage_preload=1
+    mount ext4 /dev/block/platform/soc.2/by-name/HIDDEN /preload nosuid nodev noatime wait ro
+    setprop storage.preload.complete 1
+
+on property:persist.sys.storage_preload=0
+    start umount_service
+
+# virtual sdcard daemon running as media_rw (1023)
+service sdcard /system/bin/sdcard -u 1023 -g 1023 -l -r /data/media /mnt/shell/emulated
+    class late_start
+    oneshot
+
+service fuse_extSdCard /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d -f /mnt/media_rw/extSdCard /storage/extSdCard
+    class late_start
+    disabled
+    oneshot
+
+service fuse_UsbDriveA /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveA /storage/UsbDriveA
+    class late_start
+    disabled
+    oneshot
+
+service fuse_UsbDriveB /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveB /storage/UsbDriveB
+    class late_start
+    disabled
+    oneshot
+
+service fuse_UsbDriveC /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveC /storage/UsbDriveC
+    class late_start
+    disabled
+    oneshot
+
+service fuse_UsbDriveD /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveD /storage/UsbDriveD
+    class late_start
+    disabled
+    oneshot
+
+service fuse_UsbDriveE /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveE /storage/UsbDriveE
+    class late_start
+    disabled
+    oneshot
+
+service fuse_UsbDriveF /system/bin/sdcard -u 1023 -g 1023 -d -f /mnt/media_rw/UsbDriveF /storage/UsbDriveF
+    class late_start
+    disabled
+    oneshot
+
+#service filemonitor /system/bin/FileMonitorService
+#    class main
+#    user system
+#    group system
+
+#service phservice /system/bin/phservice
+#    class main
+#    user system
+#    group system
+
+# daemon service for IPSec
+#service ipsecd /system/bin/ipsecd
+#    class main
+#    socket ipsec stream 660 net_admin radio
+#    user net_admin
+#    group net_admin system
+
+# init.rc does not yet support applying capabilities, so run as root and
+# let FMRadioServer drop uid to system with the right linux capabilities
+#service FMRadiod /system/bin/FMRadioServer
+#    class main
+
+#service mned /system/bin/MarvellNfcExtensionsDaemon
+#    class main
+#    user nfc
+#    group nfc
+
+# for Bluetooth Tethering
+service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
+    class main
+    disabled
+    oneshot
+
+on property:ro.boot.lcd=1080_50
+    setprop ro.sf.lcd_density 240
+
+on property:ro.boot.low_ram=true
+    # Android framework needs default property set
+    setprop ro.config.low_ram true
+
+on property:ro.debug_level=0x494d
+    # Debug Level MID, turn tracing on
+    # set ring buf size to 1024KiB * 4 = 4MiB
+    write /sys/kernel/debug/tracing/buffer_size_kb 1024
+    write /sys/kernel/debug/tracing/trace_clock print
+
+    # enable part of sched traces, irq, workqueue
+    write /sys/kernel/debug/tracing/events/irq/irq_handler_entry/enable 1
+    write /sys/kernel/debug/tracing/events/irq/irq_handler_exit/enable 1
+    write /sys/kernel/debug/tracing/events/workqueue/enable 1
+    write /sys/kernel/debug/tracing/events/sched/sched_switch/enable 1
+    write /sys/kernel/debug/tracing/events/power/cpu_idle/enable 1
+    write /sys/kernel/debug/tracing/events/power/machine_suspend/enable 1
+    write /sys/kernel/debug/tracing/events/printk/enable 1
+
+    # trace for Marvell events
+    write /sys/kernel/debug/tracing/events/pxa/pxa_core_clk_chg/enable 1
+    write /sys/kernel/debug/tracing/events/pxa/pxa_ddr_clk_chg/enable 1
+    write /sys/kernel/debug/tracing/events/pxa/pxa_axi_clk_chg/enable 1
+    write /sys/kernel/debug/tracing/events/pxa/pxa_set_voltage/enable 1
+    write /sys/kernel/debug/tracing/events/pxa/pxa_cpu_idle/enable 1
+
+    write /sys/kernel/debug/tracing/tracing_on 1
+    chown root shell /sys/module/sec_log/parameters/enable_klog
+    chown root shell /sys/module/sec_debug/parameters/enable_schedlog
+    chown root shell /sys/module/sec_ftrace/parameters/enable_eventlog
+
+on property:ro.debug_level=0x4f4c
+    # Debug Level LOW
+    # set ring buf size to 4KB * 4 = 16KB
+    write /sys/kernel/debug/tracing/buffer_size_kb 4
+
+# LPM
+on property:ro.bootmode=charger
+    # mount_all /fstab_lpm.pxa1908
+    mount ext4 /dev/block/platform/soc.2/by-name/SYSTEM /system wait ro
+    mount ext4 /dev/block/platform/soc.2/by-name/EFS /efs nosuid nodev noatime noauto_da_alloc,discard,journal_async_commit,errors=panic
+    chown system system /sys/class/graphics/fb0/blank
+    chmod 0664 /sys/class/graphics/fb0/blank
+    chown system system /sys/class/graphics/fb0/device/power/control
+    chmod 0664 /sys/class/graphics/fb0/device/power/control
+    chown system system  /sys/bus/platform/drivers/mmp-disp/mmp-disp/power/control
+    chmod 0664 /sys/bus/platform/drivers/mmp-disp/mmp-disp/power/control
+    mount debugfs debugfs /sys/kernel/debug
+    class_start sec_charger
+
+service playlpm /system/bin/lpm
+    class sec_charger
+    critical
+
+on property:sys.boot_completed=1
+    # 1. due to emmc calibration, kernel disable touch input by default.
+    # enable it, when boot completed.
+    # 2. enable ddr polling interval as 50, remove from phservice
+    write /sys/kernel/debug/inputbst_enable 1
+    write /sys/class/devfreq/devfreq-ddr/polling_interval 50
+
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
+    write /sys/class/devfreq/devfreq-vpu.0/userspace/set_freq 416000
+    write /sys/class/devfreq/devfreq-ddr/governor throughput
+    write /sys/class/devfreq/devfreq-ddr/polling_interval 50
+    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 624000
+    write /sys/devices/system/cpu/hotplug/lock 1
+    write /sys/devices/system/cpu/cpu0/online 1
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpufreq/interactive/io_is_busy 1
+
+    # Changed as per ssrm needs
+    chown radio system /sys/devices/system/cpu/cpufreq/interactive/timer_rate
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/timer_rate
+    chown radio system /sys/devices/system/cpu/cpufreq/interactive/timer_slack
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/timer_slack
+    chown radio system /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
+    chown radio system /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
+    chown radio system /sys/devices/system/cpu/cpufreq/interactive/target_loads
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/target_loads
+    chown radio system /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
+    chown radio system /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
+    chown radio system /sys/devices/system/cpu/cpufreq/interactive/boost
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/boost
+    chown radio system /sys/devices/system/cpu/cpufreq/interactive/boostpulse
+    chown radio system /sys/devices/system/cpu/cpufreq/interactive/input_boost
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/input_boost
+    chown radio system /sys/devices/system/cpu/cpufreq/interactive/boostpulse_duration
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/boostpulse_duration
+    chown radio system /sys/devices/system/cpu/cpufreq/interactive/io_is_busy
+    chmod 0664 /sys/devices/system/cpu/cpufreq/interactive/io_is_busy
+
+    write /sys/block/mmcblk0/queue/scheduler cfq
+
+on property:persist.sys.debug.dump=low
+   write /sys/power/panic CRASH_DISABLE
+
+on property:persist.sys.debug.dump=mid
+   write /sys/power/panic CRASH_ENABLE
+
+on property:persist.sys.debug.dump=high
+    write /sys/power/panic CRASH_ENABLE
+
+# SSWAP
+service swapon /sbin/sswap -s
+    class core
+    user root
+    group root
+    oneshot

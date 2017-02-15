@@ -1,0 +1,3 @@
+add_lunch_combo lineage_xcover3lte-userdebug
+add_lunch_combo omni_xcover3lte-userdebug
+

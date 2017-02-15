@@ -1,0 +1,57 @@
+import /init.tel.rc
+
+on init
+    # set CP master or slave
+    setprop persist.radio.pcmmaster 0
+
+on fs
+# mount emmc partitions
+
+    # create directory for NVM data, and mount nvm partition on it
+    mkdir /NVM 0744 system system
+
+    # for e2fsck bad block of /NVM partition before mount
+    exec /system/bin/e2fsck -vy /dev/block/platform/soc.2/by-name/NVM
+
+    mount ext4 /dev/block/platform/soc.2/by-name/NVM /NVM nosuid nodev nodelalloc,noauto_da_alloc
+    chown system system /NVM
+    chmod 0775 /NVM
+
+#service simal /system/bin/simal
+#    class main
+#    user wifi
+#    group system
+
+service marvelltel /system/bin/tel_launch.sh
+    class main
+    oneshot
+    group system
+
+#service mrvl_gpsd /system/bin/mrvl_gpsd
+#    class main
+#    user system
+#    group system
+
+service at_distributor /system/bin/at_distributor
+    class late_start
+    user root
+    group radio misc log
+
+service gpslpm_srv /system/bin/gpslpm_srv
+    class main
+    user system
+    group system
+
+# LPM
+service marvelltel_lpm /system/bin/tel_lpm.sh
+    class sec_charger
+    oneshot
+
+service ril-daemon2 /system/bin/rild -l /system/lib/libsec-ril-dsds.so -c 2
+    class main
+    socket rild2 stream 660 root radio
+    socket rild-debug2 stream 660 radio system
+    user root
+    group radio cache inet misc audio sdcard_r sdcard_rw log system
+    disabled
+

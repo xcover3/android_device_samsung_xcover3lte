@@ -1,0 +1,54 @@
+on boot
+
+# Accelerometer_sensor
+    chown system radio /sys/class/sensors/accelerometer_sensor/raw_data
+    chown system radio /sys/class/sensors/accelerometer_sensor/calibration
+    chown system radio /sys/class/sensors/accelerometer_sensor/reactive_alert
+    chown system radio /sys/class/sensors/accelerometer_sensor/vendor
+    chown system radio /sys/class/sensors/accelerometer_sensor/name
+    chown system radio /sys/class/sensors/accelerometer_sensor/selftest
+    chown system radio /sys/class/sensors/accelerometer_sensor/lowpassfilter
+# Proximity_sensor
+    chown system radio /sys/class/sensors/proximity_sensor/state
+    chown system radio /sys/class/sensors/proximity_sensor/raw_data
+    chown system radio /sys/class/sensors/proximity_sensor/prox_avg
+    chown system radio /sys/class/sensors/proximity_sensor/prox_cal
+    chown system radio /sys/class/sensors/proximity_sensor/vendor
+    chown system radio /sys/class/sensors/proximity_sensor/name
+# MetaEvent
+    chown system radio /sys/class/sensors/sensor_dev/flush
+
+## SENSOR IIO settings
+# Accelerometer_sensor
+    chown system system /dev/accelerometer_sensor
+    chown system system /sys/bus/iio/devices/accelerometer_sensor/buffer/enable
+    chown system system /sys/bus/iio/devices/accelerometer_sensor/buffer/length
+    chmod 0660 /dev/accelerometer_sensor
+    chmod 0664 /sys/bus/iio/devices/accelerometer_sensor/buffer/enable
+    chmod 0664 /sys/bus/iio/devices/accelerometer_sensor/buffer/length
+    chown system radio /sys/bus/iio/devices/accelerometer_sensor/enable
+    chown system radio /sys/bus/iio/devices/accelerometer_sensor/poll_delay
+    chmod 0660 /sys/bus/iio/devices/accelerometer_sensor/enable
+    chmod 0660 /sys/bus/iio/devices/accelerometer_sensor/poll_delay
+# Magnetic_sensor
+    chown system system /dev/magnetic_sensor
+    chown system system /sys/bus/iio/devices/magnetic_sensor/buffer/enable
+    chown system system /sys/bus/iio/devices/magnetic_sensor/buffer/length
+    chmod 0660 /dev/magnetic_sensor
+    chmod 0664 /sys/bus/iio/devices/magnetic_sensor/buffer/enable
+    chmod 0664 /sys/bus/iio/devices/magnetic_sensor/buffer/length
+    chown system radio /sys/bus/iio/devices/magnetic_sensor/enable
+    chown system radio /sys/bus/iio/devices/magnetic_sensor/poll_delay
+    chmod 0660 /sys/bus/iio/devices/magnetic_sensor/enable
+    chmod 0660 /sys/bus/iio/devices/magnetic_sensor/poll_delay
+# Proximity_sensor
+    chown system system /dev/proximity_sensor
+    chown system system /sys/bus/iio/devices/proximity_sensor/buffer/enable
+    chown system system /sys/bus/iio/devices/proximity_sensor/buffer/length
+    chmod 0660 /dev/proximity_sensor
+    chmod 0664 /sys/bus/iio/devices/proximity_sensor/buffer/enable
+    chmod 0664 /sys/bus/iio/devices/proximity_sensor/buffer/length
+    chown system radio /sys/bus/iio/devices/proximity_sensor/enable
+    chown system radio /sys/bus/iio/devices/proximity_sensor/poll_delay
+    chmod 0660 /sys/bus/iio/devices/proximity_sensor/enable
+    chmod 0660 /sys/bus/iio/devices/proximity_sensor/poll_delay

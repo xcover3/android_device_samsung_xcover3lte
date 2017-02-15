@@ -1,0 +1,27 @@
+#/dev/block/platform/soc.2/by-name/MRD                 /mrd            emmc            rw,noatime,nodev,nodiratime      wait
+#/dev/block/platform/soc.2/by-name/MRD1                /mrd1           emmc            rw,noatime,nodev,nodiratime      wait
+#/dev/block/platform/soc.2/by-name/DTIM                /dtim           emmc            rw,noatime,nodev,nodiratime      wait
+#/dev/block/platform/soc.2/by-name/recovery            /recovery       emmc            rw,noatime,nodev,nodiratime      wait
+#/dev/block/platform/soc.2/by-name/bootloader          /bootloader     emmc            rw,noatime,nodev,nodiratime      wait
+#/dev/block/platform/soc.2/by-name/boot                /boot           emmc            rw,noatime,nodev,nodiratime      wait
+#/dev/block/platform/soc.2/by-name/system              /system         ext4            rw,noatime,nodev,nodiratime      wait
+#/dev/block/platform/soc.2/by-name/misc                /misc           emmc            rw,noatime,nodev,nodiratime      wait
+#/dev/block/platform/soc.2/by-name/radio               /radio          emmc            rw,noatime,nodev,nodiratime      wait
+#/dev/block/platform/soc.2/by-name/NVM                 /nvm            ext4            rw,noatime,nodev,nodiratime      wait
+#/dev/block/platform/soc.2/by-name/cache               /cache          ext4            rw,noatime,nodev,nodiratime      wait
+#/dev/block/platform/soc.2/by-name/userdata            /data           ext4            rw,noatime,nodev,nodiratime      wait,length=-16384
+
+#/dev/block/platform/soc.2/by-num/p1                   /sdcard         vfat            rw,noatime,nodev,nodiratime      wait
+#/dev/block/platform/soc.2/by-num/p1                   /mnt/sdcard     vfat            rw,noatime,nodev,nodiratime      wait
+
+
+/dev/block/platform/soc.2/by-name/EFS          /efs         ext4        default        recoveryonly
+/dev/block/platform/soc.2/by-name/KERNEL       /boot        emmc        default        recoveryonly
+/dev/block/platform/soc.2/by-name/RECOVERY     /recovery    emmc        default        recoveryonly
+/dev/block/platform/soc.2/by-name/CACHE        /cache       ext4        default        recoveryonly
+/dev/block/platform/soc.2/by-name/SYSTEM       /system      ext4        default        recoveryonly
+/dev/block/platform/soc.2/by-name/USER         /data        ext4        default        wait,length=-16384
+/dev/block/platform/soc.2/by-name/HIDDEN       /preload     ext4        default        recoveryonly
+/dev/block/platform/soc.2/by-name/NVM          /nvm         ext4        default        recoveryonly
+/dev/block/platform/soc.2/by-name/MODEM        /modem       emmc        default        recoveryonly
+/dev/block/mmcblk1p1                           /sdcard      vfat        default        recoveryonly
