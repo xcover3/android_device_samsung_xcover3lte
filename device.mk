@@ -54,7 +54,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/etc/media_profiles.xml:system/etc/media_profiles.xml \
 	$(LOCAL_PATH)/etc/media_codecs.xml:system/etc/media_codecs.xml
 
-$(call inherit-product-if-exists, external/alsa-lib/alsa-lib-products.mk
+$(call inherit-product-if-exists, external/alsa-lib/alsa-lib-products.mk)
 PRODUCT_PACKAGES += \
 	libaudio \
 	alsa.omap3
