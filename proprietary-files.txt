@@ -9,7 +9,6 @@ build.prop
 /etc/camera_module_info.xml
 /etc/camera_profiles.xml
 /etc/common_scene_tuning.data
-/etc/firmware
 /etc/firmware/ispfw_v325.bin
 /etc/firmware/mrvl/bt_cal_data.conf
 /etc/firmware/mrvl/bt_init_cfg.conf
