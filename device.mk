@@ -78,5 +78,5 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/poweroff.sh:recovery/root/sbin/poweroff.sh
 $(call inherit-product, build/target/product/full.mk)
 
 # Get Proprietary Libraries and binaries
-$(call inherit-product, vendor/marvell/pxa1088/samsung/xcover3lte/xcover3lte-vendor.mk)
+$(call inherit-product, vendor/samsung/xcover3lte/xcover3lte-vendor.mk)
 
