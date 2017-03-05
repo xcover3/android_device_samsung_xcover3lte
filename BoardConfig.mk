@@ -118,7 +118,7 @@ TARGET_PROVIDES_INIT := true
 TARGET_PROVIDES_INIT_TARGET_RC := true
 
 # Malloc
-MALLOC_IMPL := dlmalloc
+MALLOC_SVELTE := true
 
 # Multimedia defines
 USE_CAMERA_STUB := true
