@@ -7,6 +7,10 @@ $(call inherit-product-if-exists, vendor/samsung/xcover3lte/xcover3lte-vendor.mk
 
 DEVICE_PACKAGE_OVERLAYS += device/samsung/xcover3lte/overlay
 
+# Boot Animation
+TARGET_SCREEN_HEIGHT := 800
+TARGET_SCREEN_WIDTH :=	400
+
 LOCAL_PATH := $(call my-dir)
 
 #ifeq ($(TARGET_PREBUILT_KERNEL),)
