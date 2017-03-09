@@ -11,7 +11,7 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/xcover3lte/overlay
 TARGET_SCREEN_HEIGHT := 800
 TARGET_SCREEN_WIDTH :=	400
 
-LOCAL_PATH := $(call my-dir)
+LOCAL_PATH := device/samsung/xcover3lte
 
 #ifeq ($(TARGET_PREBUILT_KERNEL),)
 #	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
