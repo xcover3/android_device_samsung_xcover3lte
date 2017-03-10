@@ -19,6 +19,9 @@ else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
+
 # Init files
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/ramdisk/boot/fstab.pxa1908:root/fstab.pxa1908 \
