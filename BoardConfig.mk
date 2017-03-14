@@ -38,15 +38,22 @@ BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun/file"
 BOARD_KERNEL_CMDLINE := 
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
+TARGET_KERNEL_SOURCE := kernel/samsung/xcover3lte
+TARGET_KERNEL_CONFIG := pxa1088_xcover3lte_eur_defconfig
+# Fallback if unable to build from soruce
 TARGET_PREBUILT_KERNEL := device/samsung/xcover3lte/kernel
-#TARGET_KERNEL_SOURCE := kernel/samsung/xcover3lte
-#TARGET_KERNEL_CONFIG := pxa1088_xcover3lte_eur_defconfig
-# Uncomment the above to and comment the prebuilt one when the
-# custom_mkbootimg.mk accounts for uImage creation
-BOARD_CUSTOM_MKBOOTIMG := device/samsung/xcover3lte/tools/pxa1088-mkbootimg
-
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/xcover3lte/custom_mkbootimg.mk
-BOARD_MKBOOTIMG_ARGS := --dt device/samsung/xcover3lte/dt.img --signature device/samsung/xcover3lte/boot.img-signature --unknown 0x3000000
+BOARD_CUSTOM_MKBOOTIMG := device/samsung/xcover3lte/tools/pxa1088-mkbootimg
+TARGET_CUSTOM_DTBTOOL := device/samsung/xcover3lte/tools/pxa1088-dtbtool
+BOARD_KERNEL_SEPARATED_DT := true
+BOARD_KERNEL_PREBUILT_DT := true
+TARGET_PREBUILT_DT := device/samsung/xcover3lte/dt.img
+BOARD_DTBTOOL_ARGS :=
+BOARD_MKBOOTIMG_ARGS := --signature device/samsung/xcover3lte/boot.img-signature --unknown 0x3000000
+BOARD_UBOOT_ARGS := -A arm64 -O linux -T kernel -C gzip -a 01000000 -e 01000000 -n "pxa1928dkb linux"
+
 
 # TWRP
 TARGET_RECOVERY_FSTAB := device/samsung/xcover3lte/recovery.fstab
