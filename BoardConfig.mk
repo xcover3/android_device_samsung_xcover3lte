@@ -76,6 +76,10 @@ TW_DEFAULT_BRIGHTNESS := 137
 TW_EXTRA_LANGUAGES := true
 HAVE_SELINUX := true
 
+# Time Zone Data
+PRODUCT_COPY_FILES += \
+bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
+
 # Debug flags
 TWRP_INCLUDE_LOGCAT := true
 
