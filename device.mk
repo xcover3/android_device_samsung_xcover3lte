@@ -22,18 +22,6 @@ endif
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
-# Init files
-PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/ramdisk/boot/fstab.pxa1908:root/fstab.pxa1908 \
-	$(LOCAL_PATH)/ramdisk/boot/init.pxa1908.rc:root/init.pxa1908.rc \
-	$(LOCAL_PATH)/ramdisk/boot/init.pxa1908.security.rc:root/init.pxa1908.security.rc \
-	$(LOCAL_PATH)/ramdisk/boot/init.pxa1908.sensor.rc:root/init.pxa1908.sensor.rc \
-	$(LOCAL_PATH)/ramdisk/boot/init.pxa1908.tel.rc:root/init.pxa1908.tel.rc \
-	$(LOCAL_PATH)/ramdisk/boot/init.pxa1908.usb.rc:root/init.pxa1908.usb.rc \
-	$(LOCAL_PATH)/ramdisk/boot/init_bsp.pxa1908.rc:root/init_bsp.pxa1908.rc \
-	$(LOCAL_PATH)/ramdisk/boot/init_bsp.pxa1908.tel.rc:root/init_bsp.pxa1908.tel.rc \
-	$(LOCAL_PATH)/ramdisk/boot/ueventd.pxa1908.rc:root:ueventd.pxa1908.rc 
-
 # Key mappings and touchscreen files
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/prebuilts/usr/idc/elan-ts.idc:/system/usr/idc/elan-ts.idc \
@@ -75,12 +63,6 @@ PRODUCT_COPY_FILES += \
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := mdpi
-
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab
-PRODUCT_COPY_FILES += $(LOCAL_PATH)/poweroff.sh:recovery/root/sbin/poweroff.sh
-
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_KERNEL):kernel
 
 $(call inherit-product, build/target/product/full.mk)
 

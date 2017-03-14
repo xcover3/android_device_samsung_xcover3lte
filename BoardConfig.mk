@@ -65,7 +65,6 @@ TW_EXCLUDE_SUPERSU := true
 #TW_EXCLUDE_MTP := true
 TW_MTP_DEVICE := /dev/usb_mtp_gadget
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-TARGET_RECOVERY_INITRC := device/samsung/xcover3lte/ramdisk/recovery/init.rc
 RECOVERY_FSTAB_VERSION := 2
 TW_NO_REBOOT_BOOTLOADER := true
 TW_HAS_DOWNLOAD_MODE := true
@@ -125,7 +124,6 @@ LOCAL_CFLAGS += -DNO_SECURE_DISCARD
 MRVL_ION := true
 
 # Init
-TARGET_PROVIDES_INIT := true
 TARGET_PROVIDES_INIT_TARGET_RC := true
 
 # Malloc

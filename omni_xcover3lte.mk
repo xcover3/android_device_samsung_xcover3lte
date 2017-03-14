@@ -10,6 +10,9 @@ $(call inherit-product, vendor/omni/config/common.mk)
 # Inherit device configuration
 $(call inherit-product, device/samsung/xcover3lte/device.mk)
 
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/poweroff.sh:recovery/root/sbin/poweroff.sh
+
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := xcover3lte
 PRODUCT_NAME := omni_xcover3lte
