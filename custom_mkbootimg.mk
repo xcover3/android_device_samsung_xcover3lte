@@ -1,6 +1,8 @@
 LOCAL_PATH := $(call my-dir)
 
-include device/samsung/xcover3lte/tools/Android.mk
+#include device/samsung/xcover3lte/tools/Android.mk
+#Currently generating ^ errors, use prebuilt ones.
+
 #-------------------------------------------#
 # 	Generate device tree image (dt.img) 	#
 #-------------------------------------------#
@@ -49,6 +51,7 @@ $(INSTALLED_DTIMAGE_TARGET):$(TARGET_PREBUILT_DT)
 
 .PHONY: dtimage
 dtimage: $(INSTALLED_DTIMAGE_TARGET)
+endif
 endif
 endif
 

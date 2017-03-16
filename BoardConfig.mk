@@ -39,7 +39,7 @@ BOARD_KERNEL_CMDLINE :=
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 TARGET_KERNEL_SOURCE := kernel/samsung/xcover3lte
-TARGET_KERNEL_CONFIG := pxa1088_xcover3lte_eur_defconfig
+TARGET_KERNEL_CONFIG := pxa1908_xcover3lte_eur_defconfig
 # Fallback if unable to build from soruce
 TARGET_PREBUILT_KERNEL := device/samsung/xcover3lte/kernel
 TARGET_KERNEL_ARCH := arm64
