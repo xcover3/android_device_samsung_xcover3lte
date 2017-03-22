@@ -1,0 +1,82 @@
+root@xcover3lte:/data/data/com.termux/files/home #
+ls -l /dev/block/platform/soc.2/by-name/
+total 0
+CACHE -> /dev/block/mmcblk0p15
+EFS -> /dev/block/mmcblk0p6
+HIDDEN -> /dev/block/mmcblk0p16
+KERNEL -> /dev/block/mmcblk0p9
+LOKE1ST -> /dev/block/mmcblk0p5
+LOKE2ND -> /dev/block/mmcblk0p4
+MEP2 -> /dev/block/mmcblk0p3
+MODEM -> /dev/block/mmcblk0p10
+MRD -> /dev/block/mmcblk0p1
+MRD1 -> /dev/block/mmcblk0p2
+NVM -> /dev/block/mmcblk0p13
+OTA -> /dev/block/mmcblk0p12
+PARAM -> /dev/block/mmcblk0p7
+RECOVERY -> /dev/block/mmcblk0p8
+SSTD -> /dev/block/mmcblk0p11
+SYSTEM -> /dev/block/mmcblk0p14
+USER -> /dev/block/mmcblk0p17
+
+root@xcover3lte:/data/data/com.termux/files/home #
+cat /proc/partitions
+major minor  #blocks  name
+
+   7        0      98304 loop0
+   7        1      38648 loop1
+   7        2      41780 loop2
+   7        3       9404 loop3
+   7        4       4180 loop4
+   7        5      21936 loop5
+   7        6       4180 loop6
+   7        7      39692 loop7
+ 253        0     786432 vnswap0
+ 179        0    7634944 mmcblk0
+ 179        1        512 mmcblk0p1
+ 179        2        512 mmcblk0p2
+ 179        3       7168 mmcblk0p3
+ 179        4       2048 mmcblk0p4
+ 179        5       2048 mmcblk0p5
+ 179        6      16384 mmcblk0p6
+ 179        7       4096 mmcblk0p7
+ 179        8      16384 mmcblk0p8
+ 179        9      16384 mmcblk0p9
+ 179       10      28672 mmcblk0p10
+ 179       11      32768 mmcblk0p11
+ 179       12       1024 mmcblk0p12
+ 179       13      24576 mmcblk0p13
+ 179       14    1572864 mmcblk0p14
+ 179       15     204800 mmcblk0p15
+ 179       16      10240 mmcblk0p16
+ 179       17    5689344 mmcblk0p17
+ 179       72        512 mmcblk0rpmb
+ 179       48       4096 mmcblk0boot1
+ 179       24       4096 mmcblk0boot0
+ 179       96   15558144 mmcblk1
+ 179       97   15554048 mmcblk1p1
+ 254        0      38648 dm-0
+ 254        1      41780 dm-1
+ 254        2       9404 dm-2
+ 254        3       4180 dm-3
+ 254        4      21936 dm-4
+ 254        5       4180 dm-5
+ 254        6      39692 dm-6
+   7        8       8356 loop8
+ 254        7       8356 dm-7
+   7        9      10448 loop9
+ 254        8      10448 dm-8
+   7       10      14624 loop10
+ 254        9      14624 dm-9
+   7       11       8356 loop11
+ 254       10       8356 dm-10
+   7       12      38648 loop12
+ 254       11      38648 dm-11
+   7       13       3136 loop13
+ 254       12       3136 dm-12
+   7       14       3136 loop14
+ 254       13       3136 dm-13
+   7       15       9404 loop15
+ 254       14       9404 dm-14
+   7       16      13580 loop16
+ 254       15      13580 dm-15

@@ -9,6 +9,10 @@ $(call inherit-product, vendor/omni/config/common.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/samsung/xcover3lte/device.mk)
+e
+# Time Zone Data
+PRODUCT_COPY_FILES += \
+bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
 
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/poweroff.sh:recovery/root/sbin/poweroff.sh
