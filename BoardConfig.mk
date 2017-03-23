@@ -13,11 +13,19 @@ TARGET_SOC := pxa1908
 -include vendor/samsung/xcover3lte/BoardConfigVendor.mk
 
 # Architecture/Bootloader
-TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_VARIANT := cortex-a7
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_VARIANT := cortex-a53
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
+
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+TARGET_2ND_CPU_VARIANT := cortex-a53.a57
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+
+TARGET_PREFER_32_BIT := true
 TARGET_CPU_SMP := true
 TARGET_NO_BOOTLOADER := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
@@ -81,6 +89,9 @@ MRVL_ION := true
 TARGET_KERNEL_SOURCE := kernel/samsung/xcover3lte
 TARGET_KERNEL_CONFIG := pxa1908_xcover3lte_eur_defconfig
 #TARGET_PREBUILT_KERNEL := device/samsung/xcover3lte/kernel
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 
 # Init
 TARGET_PROVIDES_INIT_TARGET_RC := true
@@ -98,8 +109,7 @@ TARGET_PREBUILT_DT := device/samsung/xcover3lte/dt.img
 BOARD_DTBTOOL_ARGS :=
 BOARD_MKBOOTIMG_ARGS := --signature device/samsung/xcover3lte/boot.img-signature --unknown 0x3000000
 BOARD_UBOOT_ARGS := -A arm64 -O linux -T kernel -C gzip -a 01000000 -e 01000000 -n "pxa1928dkb linux"
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+
 
 # Malloc
 MALLOC_SVELTE := true
