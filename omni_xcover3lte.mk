@@ -9,7 +9,7 @@ $(call inherit-product, vendor/omni/config/common.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/samsung/xcover3lte/device.mk)
-e
+
 # Time Zone Data
 PRODUCT_COPY_FILES += \
 bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
