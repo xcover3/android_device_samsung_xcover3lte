@@ -1,7 +1,6 @@
 LOCAL_PATH := $(call my-dir)
 
-#include device/samsung/xcover3lte/tools/Android.mk
-#Currently generating ^ errors, use prebuilt ones.
+include hardware/marvell/pxa1088-mkbootimg/Android.mk
 
 #-------------------------------------------#
 # 	Generate device tree image (dt.img) 	#
