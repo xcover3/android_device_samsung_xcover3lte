@@ -92,6 +92,7 @@ TARGET_KERNEL_CONFIG := pxa1908_xcover3lte_eur_defconfig
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+KERNEL_TOOLCHAIN := prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.8/bin/
 
 # Init
 TARGET_PROVIDES_INIT_TARGET_RC := true

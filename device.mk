@@ -17,15 +17,6 @@ TARGET_SCREEN_WIDTH :=	400
 
 LOCAL_PATH := device/samsung/xcover3lte
 
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
-else
-	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
-
 # Key mappings and touchscreen files
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/prebuilts/usr/idc/elan-ts.idc:/system/usr/idc/elan-ts.idc \
