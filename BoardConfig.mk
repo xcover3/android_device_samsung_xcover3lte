@@ -99,8 +99,8 @@ TARGET_PROVIDES_INIT_TARGET_RC := true
 
 # Kernel
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/xcover3lte/custom_mkbootimg.mk
-BOARD_CUSTOM_MKBOOTIMG := device/samsung/xcover3lte/tools/pxa1088-mkbootimg
-TARGET_CUSTOM_DTBTOOL := device/samsung/xcover3lte/tools/pxa1088-dtbtool
+BOARD_CUSTOM_MKBOOTIMG := device/samsung/xcover3lte/tools/pxa-mkbootimg
+TARGET_CUSTOM_DTBTOOL := device/samsung/xcover3lte/tools/pxa1908-dtbTool
 BOARD_KERNEL_CMDLINE := 
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
